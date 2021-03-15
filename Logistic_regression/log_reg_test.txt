@@ -1,0 +1,24 @@
+df_test = pd.read_csv('titanic/test.csv')
+df_test['Age'].fillna(df_test['Age'].mean(), inplace=True)
+
+Sexdict = {'male': 0, 'female': 1}
+df_test['Sex_binary']=df_test['Sex'].map(Sexdict)
+df_test = pd.concat([df_test,pd.get_dummies(df_test['Pclass'], prefix='Pclass')], axis =1)
+df_test = pd.concat([df_test,pd.get_dummies(df_test['Embarked'], prefix='Embarked')], axis =1)
+df_test.pop('Sex')
+df_test.pop('Pclass')
+df_test.pop('Embarked')
+
+features_test =df_test[['Age','SibSp','Parch','Fare','Sex_binary','Pclass_1','Pclass_2','Pclass_3','Embarked_C','Embarked_Q','Embarked_S']]
+
+random_var00= norm_x(features_test['Age'], features_test['Age'].max(), features_test['Age'].min())
+features_test.replace(features_test['Age'],random_var00)
+
+random_var01= norm_x(features_test['SibSp'], features_test['SibSp'].max(), features_test['SibSp'].min())
+features_test.replace(features_test['SibSp'],random_var01)
+
+random_var02= norm_x(features_test['Parch'], features_test['Parch'].max(), features_test['Parch'].min())
+features_test.replace(features_test['Parch'],random_var02)
+
+random_var03= norm_x(features_test['Fare'], features_test['Fare'].max(), features_test['Fare'].min())
+features_test.replace(features_test['Fare'],random_var03)
