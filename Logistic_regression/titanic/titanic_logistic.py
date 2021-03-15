@@ -3,13 +3,15 @@ import pandas as pd
 # from sklearn import preprocessing
 # import math
 import os
+import sys
+print(sys.path)
 import data_manipulation as dm
 import Logistic_Regression as log_r
 
 
-
 # read_csv
 df = pd.read_csv('train.csv')
+
 
 # convert column of data_frame into object type
 df['Pclass'] = dm.convert_to_object(df, 'Pclass')
@@ -92,13 +94,14 @@ for i in range(len(y_predict)):
 print(y_predict)
 print(len(y_predict))
 
-#test accuracy
-count = 0
+#test accuracy .////////////////////////////////////
 y_actual = df['Survived'].iloc[700:].values
+count = 0
 for i in range(len(y_actual)):
-    if (y_predict[i] == y_actual[i]):
+    if (predict_test[i] == y_test.values[i]):
         count = count +1
 
+print(count)
 accuracy = (count* 100) / (len(y_predict)) 
 print(accuracy)
 
