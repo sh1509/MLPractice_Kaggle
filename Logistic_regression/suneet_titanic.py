@@ -22,11 +22,6 @@ def split_data(data_frame):
 df = split_data(df_original)
 y = df['Survived']
 
-def generate_features(df):
-  pass
-
-def one_hot_encoding(df):
-  pass
 
 df.loc[:,['Pclass']]=df.loc[:,['Pclass']].astype('object')
 
